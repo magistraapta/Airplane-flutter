@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:newapp/pages/sign_up.dart';
 import '../shared/theme.dart';
 
 class GetStarted extends StatelessWidget {
@@ -38,7 +39,12 @@ class GetStarted extends StatelessWidget {
                 width: 220,
                 height: 55,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SignUp()));
+                  },
                   style: TextButton.styleFrom(
                       backgroundColor: kPrimaryColor,
                       shape: RoundedRectangleBorder(
