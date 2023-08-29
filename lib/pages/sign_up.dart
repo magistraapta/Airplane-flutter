@@ -150,12 +150,44 @@ class SignUp extends StatelessWidget {
       );
     }
 
+    Widget footNote() {
+      return Container(
+        margin: EdgeInsets.only(top: 80),
+        child: Text(
+          "Terms & Conditions",
+          textAlign: TextAlign.center,
+          style: grayTextStyle.copyWith(
+              fontSize: 16,
+              fontWeight: medium,
+              decoration: TextDecoration.underline),
+        ),
+      );
+    }
+
     Widget input() {
-      Widget field() {
+      Widget submitButton() {
+        return Container(
+          width: 287,
+          height: 55,
+          child: TextButton(
+              onPressed: () {},
+              style: TextButton.styleFrom(
+                  backgroundColor: kPrimaryColor,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(defaultRadius))),
+              child: Text(
+                "Sign Up",
+                style:
+                    whiteTextStyle.copyWith(fontSize: 16, fontWeight: semibold),
+              )),
+        );
+      }
+
+      Widget field(String inputTitle) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Username"),
+            Text("${inputTitle}"),
             TextField(
               decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -179,25 +211,11 @@ class SignUp extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            field(),
-            field(),
-            field(),
-            field(),
-            Container(
-              width: 287,
-              height: 55,
-              child: TextButton(
-                  onPressed: () {},
-                  style: TextButton.styleFrom(
-                      backgroundColor: kPrimaryColor,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(defaultRadius))),
-                  child: Text(
-                    "Sign Up",
-                    style: whiteTextStyle.copyWith(
-                        fontSize: 16, fontWeight: medium),
-                  )),
-            )
+            field("FullName"),
+            field("Email"),
+            field("Password"),
+            field("Hobby"),
+            submitButton()
           ],
         ),
       );
@@ -208,7 +226,7 @@ class SignUp extends StatelessWidget {
         body: SafeArea(
           child: ListView(
             padding: EdgeInsets.symmetric(horizontal: defaultMargin),
-            children: [titleScreen(), input()],
+            children: [titleScreen(), input(), footNote()],
           ),
         ));
   }
