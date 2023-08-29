@@ -40,10 +40,7 @@ class GetStarted extends StatelessWidget {
                 height: 55,
                 child: TextButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const SignUp()));
+                    Navigator.pushNamed(context, '/sign-up');
                   },
                   style: TextButton.styleFrom(
                       backgroundColor: kPrimaryColor,
