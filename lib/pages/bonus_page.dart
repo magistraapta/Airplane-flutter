@@ -15,7 +15,9 @@ class BonusPage extends StatelessWidget {
                 color: kPrimaryColor,
                 borderRadius: BorderRadius.circular(defaultRadius)),
             child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/home-page');
+                },
                 child: Text('Start fly now',
                     style: whiteTextStyle.copyWith(
                         fontSize: 18, fontWeight: medium))));
