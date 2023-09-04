@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newapp/components/navigation_item.dart';
-import 'package:newapp/components/test.dart';
+import 'package:newapp/components/small_card.dart';
+import 'package:newapp/components/top_destination.dart';
 import '../shared/theme.dart';
 
 class HomePage extends StatelessWidget {
@@ -70,9 +71,37 @@ class HomePage extends StatelessWidget {
           ));
     }
 
+    Widget newThisYear() {
+      return Container(
+        margin: EdgeInsets.only(top: 30),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "New this year",
+              style:
+                  blackTextStyle.copyWith(fontSize: 18, fontWeight: semibold),
+            ),
+            SmallCard()
+          ],
+        ),
+      );
+    }
+
     return Scaffold(
       body: Stack(
-        children: [customNavigation()],
+        children: [
+          SafeArea(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [header(), TopDestination(), newThisYear()],
+              ),
+            ),
+          ),
+          customNavigation()
+        ],
       ),
     );
   }
