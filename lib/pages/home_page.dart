@@ -73,7 +73,7 @@ class HomePage extends StatelessWidget {
 
     Widget newThisYear() {
       return Container(
-        margin: EdgeInsets.only(top: 30),
+        margin: EdgeInsets.only(top: 30, bottom: 140),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -82,7 +82,26 @@ class HomePage extends StatelessWidget {
               style:
                   blackTextStyle.copyWith(fontSize: 18, fontWeight: semibold),
             ),
-            SmallCard()
+            SmallCard(
+              name: "Danau Beratana",
+              country: 'Singapura',
+              imageUrl: 'cover-1.png',
+            ),
+            SmallCard(
+              name: "Sydney Opera",
+              country: 'Australia',
+              imageUrl: 'cover-2.png',
+            ),
+            SmallCard(
+              name: "Roma",
+              country: 'Italy',
+              imageUrl: 'cover-3.png',
+            ),
+            SmallCard(
+              name: "Payung Teduh",
+              country: 'Singapura',
+              imageUrl: 'cover-4.png',
+            ),
           ],
         ),
       );
@@ -94,8 +113,7 @@ class HomePage extends StatelessWidget {
           SafeArea(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: defaultMargin),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: ListView(
                 children: [header(), TopDestination(), newThisYear()],
               ),
             ),

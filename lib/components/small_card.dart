@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import '../shared/theme.dart';
 
 class SmallCard extends StatelessWidget {
-  const SmallCard({Key? key}) : super(key: key);
+  final String name;
+  final String country;
+  final String imageUrl;
+  const SmallCard({Key? key, required this.name, required this.country, required this.imageUrl}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,7 @@ class SmallCard extends StatelessWidget {
           height: 70,
           width: 70,
           decoration: BoxDecoration(
-              image: DecorationImage(image: AssetImage('assets/cover-1.png'))),
+              image: DecorationImage(image: AssetImage('assets/${imageUrl}'))),
         ),
         SizedBox(
           width: 16,
@@ -29,11 +32,11 @@ class SmallCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Danau beratana",
+              "${name}",
               style: blackTextStyle.copyWith(fontSize: 18, fontWeight: medium),
             ),
             Text(
-              "Singapura",
+              "${country}",
               style: grayTextStyle.copyWith(fontSize: 14, fontWeight: light),
             ),
           ],
