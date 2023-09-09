@@ -36,41 +36,6 @@ class HomePage extends StatelessWidget {
       );
     }
 
-    Widget customNavigation() {
-      return Align(
-          alignment: Alignment.bottomCenter,
-          child: Container(
-            width: double.infinity,
-            height: 60,
-            margin: EdgeInsets.only(
-                bottom: 30, left: defaultMargin, right: defaultMargin),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(defaultRadius),
-                color: kWhiteColor),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                NavigationItem(
-                  imageUrl: 'fi_globe',
-                  isSelected: true,
-                ),
-                NavigationItem(
-                  imageUrl: 'fi_book-open',
-                  isSelected: false,
-                ),
-                NavigationItem(
-                  imageUrl: 'fi_credit-card',
-                  isSelected: false,
-                ),
-                NavigationItem(
-                  imageUrl: 'fi_settings',
-                  isSelected: false,
-                ),
-              ],
-            ),
-          ));
-    }
-
     Widget newThisYear() {
       return Container(
         margin: EdgeInsets.only(top: 30, bottom: 140),
@@ -107,19 +72,10 @@ class HomePage extends StatelessWidget {
       );
     }
 
-    return Scaffold(
-      body: Stack(
-        children: [
-          SafeArea(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: defaultMargin),
-              child: ListView(
-                children: [header(), TopDestination(), newThisYear()],
-              ),
-            ),
-          ),
-          customNavigation()
-        ],
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+      child: ListView(
+        children: [header(), TopDestination(), newThisYear()],
       ),
     );
   }
