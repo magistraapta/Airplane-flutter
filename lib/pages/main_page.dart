@@ -5,6 +5,9 @@ import 'package:newapp/components/small_card.dart';
 import 'package:newapp/components/top_destination.dart';
 import 'package:newapp/cubit/page_cubit.dart';
 import 'package:newapp/pages/home_page.dart';
+import 'package:newapp/pages/notification_page.dart';
+import 'package:newapp/pages/setting_page.dart';
+import 'package:newapp/pages/transaction_page.dart';
 import '../shared/theme.dart';
 
 class MainPage extends StatelessWidget {
@@ -12,8 +15,20 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget buildContent() {
-      return HomePage();
+    Widget buildContent(int currentIndex) {
+      switch (currentIndex) {
+        case 0:
+          return HomePage();
+        case 1:
+          return TransactionPage();
+        case 2:
+          return NotificationPage();
+        case 3:
+          return SettingPage();
+
+        default:
+          return HomePage();
+      }
     }
 
     Widget customNavigation() {
@@ -31,31 +46,35 @@ class MainPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 NavigationItem(
+                  index: 0,
                   imageUrl: 'fi_globe',
-                  isSelected: true,
                 ),
                 NavigationItem(
+                  index: 1,
                   imageUrl: 'fi_book-open',
-                  isSelected: false,
                 ),
                 NavigationItem(
+                  index: 2,
                   imageUrl: 'fi_credit-card',
-                  isSelected: false,
                 ),
                 NavigationItem(
+                  index: 3,
                   imageUrl: 'fi_settings',
-                  isSelected: false,
                 ),
               ],
             ),
           ));
     }
 
-    return Scaffold(
-      backgroundColor: kWhiteColor,
-      body: Stack(
-        children: [buildContent(), customNavigation()],
-      ),
+    return BlocBuilder<PageCubit, int>(
+      builder: (context, currentIndex) {
+        return Scaffold(
+          backgroundColor: kWhiteColor,
+          body: Stack(
+            children: [buildContent(currentIndex), customNavigation()],
+          ),
+        );
+      },
     );
   }
 }

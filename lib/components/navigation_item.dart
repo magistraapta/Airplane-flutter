@@ -1,33 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:newapp/cubit/page_cubit.dart';
 import '../shared/theme.dart';
 
 class NavigationItem extends StatelessWidget {
-  const NavigationItem({Key? key, required this.imageUrl, required this.isSelected}) : super(key: key);
-
   final String imageUrl;
-  final bool isSelected;
+  final int index;
+  const NavigationItem({Key? key, required this.imageUrl, required this.index})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        SizedBox(
-          height: 8,
-        ),
-        Container(
-          width: 24,
-          height: 24,
-          decoration: BoxDecoration(
-              image:
-                  DecorationImage(image: AssetImage('assets/${imageUrl}.png'))),
-        ),
-        Container(
-          width: 30,
-          height: 2,
-          color: isSelected ? kPrimaryColor : kWhiteColor,
-        )
-      ],
+    return GestureDetector(
+      onTap: () {
+        context.read<PageCubit>().setPage(index);
+      },
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          SizedBox(
+            height: 8,
+          ),
+          Image.asset(
+            'assets/${imageUrl}.png',
+            width: 24,
+            height: 24,
+            color: context.read<PageCubit>().state == index
+                ? kPrimaryColor
+                : kGrayColor,
+          ),
+          Container(
+            width: 30,
+            height: 2,
+            color: context.read<PageCubit>().state == index
+                ? kPrimaryColor
+                : kWhiteColor,
+          )
+        ],
+      ),
     );
   }
 }
